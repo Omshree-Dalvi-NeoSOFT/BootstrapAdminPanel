@@ -1,3 +1,5 @@
+<!--  Code foe captcha -->
+
 <?php
 $r1=range(0,9);
 $ran1=array_rand($r1);

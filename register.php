@@ -2,6 +2,7 @@
 
 error_reporting(0);
 
+// include captcha 
 include("cap.php");
 //define variables
 $erremail=$erruname=$errpass=$errname=$errage=$errgender=$errimage=$errcap=$status=$status2=$status3=$errcpass="";
@@ -18,20 +19,29 @@ if(isset($_POST['sub'])){
     $gender=$_POST['gender'];
     $dest = "users/".$email."/";
    
+    // check for empty
     if(!empty($temp) && !empty($email) && !empty($uname) && !empty($pass) && !empty($name) && !empty($age) && !empty($gender) && !empty($cpass) && !empty($_POST['captcha'])){
+        // check for email
         if(preg_match("/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i",$email)){
+            // check for valid captcha
             if($_POST['captcha']==$_POST['captchasum']){
+                // check for password validation
                 if(preg_match("/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/",$pass)){
+                    // check for password and confirm password
                     if($cpass == $pass){
+                        // check for username
                         if(preg_match("/^[a-zA-Z0-9\-\_]+$/",$uname)){
                             $ext=pathinfo($fn,PATHINFO_EXTENSION);
                             $fname="profile.$ext";
+                            // check for image extension
                             if($ext=="jpg" || $ext=="png" || $ext=="jpeg"){
+                                // check for user existance
                                 if(is_dir("users/".$email)){
                                     $erremail = "is-invalid";
                                     $status= "user already registered !";
                                 }
                                 else{
+                                    // if not create user and upload files
                                     mkdir("users/$email");
                                     if(move_uploaded_file($temp,"users/$email/$fname")){
                                         $password = substr(sha1($pass),0,10);

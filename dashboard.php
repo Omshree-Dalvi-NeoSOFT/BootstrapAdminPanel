@@ -22,6 +22,7 @@
             <?php include('sidebar.php') ?>
         </section>
         <section class="col-md-9 ">
+            <!-- open pages on get -->
            <?php 
             switch(@$_GET['con']){
                 case 'changeimage':

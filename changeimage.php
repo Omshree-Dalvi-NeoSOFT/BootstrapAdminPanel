@@ -14,6 +14,7 @@ $imgpath="users/$email/$image";
 
 if(isset($_POST['sub'])){
     
+    // get image file
     $temp=$_FILES['att']['tmp_name'];
      $fname=$_FILES['att']['name'];
      $des = "users/$email/";
@@ -22,10 +23,12 @@ if(isset($_POST['sub'])){
         unlink($imgpath);
             $ext = pathinfo($fname,PATHINFO_EXTENSION);
             $fn = "attachment.$ext";
-            $pathname="profile.$ext";   
-         if($ext == "jpg" || $ext == "jpeg" || $ext == "pdf"){
+            $pathname="profile.$ext";   // remane image file
+            // allow only if image with jpg/jpeg/pdf
+         if($ext == "jpg" || $ext == "jpeg" || $ext == "png"){
             
             if(move_uploaded_file($temp,$des.$fn)){
+                // image is added
                 $errimage="is-valid";
                 $status1="Profile Updated !";
                 rename("users/$email/$fn","users/$email/$pathname");
@@ -38,7 +41,7 @@ if(isset($_POST['sub'])){
          }
          else{
             $errimage="is-invalid";
-            $status="only jpg/jpeg/pdf allowed.";
+            $status="only jpg/jpeg/png allowed.";
          }
      }
      else{
@@ -65,6 +68,7 @@ if(isset($_POST['sub'])){
             <div class="invalid-feedback">
                 Invalid !
             </div>
+            <!-- Print error msges -->
             <section class="text-danger"><?php echo $status?></section>
             <section class="text-success"><?php echo $status1?></section>
             <br>

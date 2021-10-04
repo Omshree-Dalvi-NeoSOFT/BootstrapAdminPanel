@@ -1,19 +1,7 @@
 <?php 
+// session to print username on nav
 session_start();
 $user=$_SESSION['sid'];
-
-$page = @$_GET['con'];
-switch($page){
-    case 'product': $prst="active";
-    break;
-    case 'order': $orst="active";
-    break;
-    case 'calculator': $calst="active";
-    break;
-    case 'contactus': $contst="active";
-    break;
-    
-}
 
 ?>
   <!-- define nav bar -->

@@ -1,7 +1,10 @@
 <?php 
 error_reporting(0);
+// get email and user
 $email=$_SESSION['eml'];
 $user=$_SESSION['sid'];
+
+
 $errpass=$errnewpass=$errcnewpass="";
 $fo=fopen("users/$email/details.txt","r");
 $uname=trim(fgets($fo)); // userName
@@ -17,9 +20,11 @@ $cnewpass=$_POST['cnewpass'];
 $status="";
 
 if(isset($_POST['sub'])){
-    $pass=substr(sha1($oldpass),0,10);
+    $pass=substr(sha1($oldpass),0,10); // encode password
     if($pass == $password){
+        // password validation
         if(preg_match("/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/",$newpass)){
+            // check wether new password is provided.
             if($newpass != $oldpass){
                 if($newpass==$cnewpass){
                     $errcnewpass=$errpass=$errnewpass= "is-valid";
@@ -89,7 +94,7 @@ if(isset($_POST['sub'])){
 
         <div class="col-md-12">
 
-            <!-- password -->
+            <!-- confirm password -->
             <label for="validationServer02" class="form-label">Confirm New Password</label>
             <input type="password" class="form-control <?php echo $errcnewpass; ?>" id="validationServer02" name="cnewpass" >
             

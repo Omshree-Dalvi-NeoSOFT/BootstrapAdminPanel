@@ -4,17 +4,23 @@ $erremail=$errpass='';
     $email=$_POST['email'];
     $password=$_POST['pass'];
     $pass1=$password;
+
+    // check for empty field
     if(!empty($email) && !empty($password)){
+      // check for user email
       if(is_dir("users/$email")){
           $fo=fopen("users/$email/details.txt","r");
           $uname=fgets($fo);
           $pass=trim(fgets($fo));
-          $password=substr(sha1($password),0,10);
+          $password=substr(sha1($password),0,10); // password decode
           if($pass==$password){
+            // session variables for other pages
             session_start();
             $_SESSION['sid']=$uname;
             $_SESSION['eml']=$email;
+
             if(!empty($_POST['rememberme'])){
+              // remember me concept
               setcookie("email",$email,time()+3600*24);
               setcookie("password",$pass1,time()+3600*24);
             }
@@ -41,6 +47,7 @@ $erremail=$errpass='';
 <?php include('head.php')?>
 <script>
 
+  // cookies function to generate passsword.
   function cook(){
     if("<?php echo $_COOKIE['email'];?>"!=undefined){
       if("<?php echo $_COOKIE['email'];?>" == document.getElementById("email").value){
@@ -65,19 +72,25 @@ $erremail=$errpass='';
         </div>
            <!-- login form -->
             <form method="post">
+              <!-- email id -->
             <div class="input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg">Email - ID</span>
                 <input type="email" class="form-control" name="email" id="email" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onchange="cook()">
             </div>
+            <!-- error msg -->
                 <span class="text-danger"><?php echo $erremail;?></span>
                 <br>
 
+                <!-- password -->
             <div class="input-group input-group-lg">
                 <span class="input-group-text" id="inputGroup-sizing-lg">Password</span>
                 <input type="password" class="form-control" id="password" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="pass">
             </div>
+            <!-- error msg -->
                 <span class="text-danger"><?php echo $errpass?></span>
                 <br>
+
+                <!-- remember option -->
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" name="rememberme" id="exampleCheck1">
                 <label class="form-check-label"  for="exampleCheck1">Remember me</label>
