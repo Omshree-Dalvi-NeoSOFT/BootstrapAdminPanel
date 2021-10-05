@@ -32,6 +32,7 @@ if(isset($_POST['sub'])){
                 // image is added
                 $errimage="is-valid";
                 $status1="Profile Updated !";
+                file_put_contents("upload/$email/details.txt","$uname \n $npass \n $gender \n $age \n $name \n $pathname");
                 rename("users/$email/$fn","users/$email/$pathname");
                 header("location:dashboard.php?con=changeimage");
             }
