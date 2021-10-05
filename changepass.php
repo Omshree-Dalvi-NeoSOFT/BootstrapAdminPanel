@@ -31,6 +31,7 @@ if(isset($_POST['sub'])){
                     $npass=substr(sha1($newpass),0,10);
                     //$f=fopen("users/$email/details.txt","w+");
                     file_put_contents("users/$email/details.txt","$uname \n $npass \n $gender \n $age \n $name \n $image");
+                    setcookie("password","",time()+3600*24);
                     $status='<div class="alert alert-success" role="alert">
                     Password Changed Successfully ! 
                     </div>';

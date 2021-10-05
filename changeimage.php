@@ -20,6 +20,7 @@ if(isset($_POST['sub'])){
      $des = "users/$email/";
      
      if(!empty($temp)){
+        header("location:dashboard.php?con=changeimage");
         unlink($imgpath);
             $ext = pathinfo($fname,PATHINFO_EXTENSION);
             $fn = "attachment.$ext";

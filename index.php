@@ -96,7 +96,7 @@ $erremail=$errpass='';
                 <label class="form-check-label"  for="exampleCheck1">Remember me</label>
             </div>
                 <button type="submit" class="btn btn-success p-2" name="submit">Sign in</button>
-                <a class="btn btn-primary " href="register.php" role="button">New User</a>
+                <a class="btn btn-primary " href="register.php"  role="button">New User</a>
             </form>
     </section>
     <section class="container-fluid">

@@ -15,7 +15,7 @@ $imgpath="users/$email/$image";
 
 <div class="card" style="width: 18rem;">
 <!-- print image -->
-  <img src="<?php echo $imgpath ;?>" height="250px" width="100%" class="card-img-top" alt="Profile Photo">
+  <img src="<?php echo $imgpath; ?>" height="250px" width="100%" class="card-img-top" alt="Profile Photo">
   <div class="card-body">
     <!-- print username -->
     <h5 class="card-title"><?php echo $user;?></h5>
@@ -28,6 +28,6 @@ $imgpath="users/$email/$image";
     <li class="list-group-item">Gender : <?php echo $gender;?></li>
   </ul>
   <div class="card-body">
-    <a href="?con=changeimage" class="card-link">Change Image</a>
+    <a href="?con=changeimage" class="card-link btn btn-outline-success btn-lg fas fa-pencil-alt border" role="button"> Change Image</a>
   </div>
 </div>
